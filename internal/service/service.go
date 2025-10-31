@@ -237,3 +237,7 @@ func (s *Service) GetGoal(goalID int) (*models.Goal, error) {
 func (s *Service) GetOrCreateUser(tgID int64, username string) (*models.User, error) {
 	return s.repo.GetOrCreateUser(tgID, username)
 }
+
+func (s *Service) GetUserByID(userID int64) (*models.User, error) {
+	return s.repo.GetUserByID(userID)
+}
