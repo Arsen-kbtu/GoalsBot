@@ -215,3 +215,15 @@ func (r *Repository) CreateTransaction(fromUserID, toUserID, amount int, reason 
 	`, fromUserID, toUserID, amount, reason, goalID)
 	return err
 }
+
+func (r *Repository) GetUserByID(id int64) (*models.User, error) {
+	var user models.User
+	err := r.db.QueryRow(`
+		SELECT id, tg_id, username, balance, created_at 
+		FROM users WHERE id = $1
+	`, id).Scan(&user.ID, &user.TgID, &user.Username, &user.Balance, &user.CreatedAt)
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}

@@ -336,7 +336,7 @@ func (h *BotHandler) handleChatGoals(message *tgbotapi.Message) {
 	text := "📋 Активные цели в беседе:\n\n"
 	for i, goal := range goals {
 		// Get user info
-		user, _ := h.service.GetOrCreateUser(int64(goal.UserID), "")
+		user, _ := h.service.GetUserByID(int64(goal.UserID))
 
 		statusEmoji := "🔄"
 		statusText := "Активна"
